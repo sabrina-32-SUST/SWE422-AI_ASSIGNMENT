@@ -1,6 +1,6 @@
+import platform
 from math import inf as infinity
-
-
+from os import system
 
 humen =  -1
 computer = 1
@@ -81,6 +81,7 @@ def setMove(xCoordinate, yCoordinate, player):
     else:
         return False
 
+
 "minimax fuction  will  choose   the  best  move"
 def minimax(state, depth, player):
     if player == computer:
@@ -106,6 +107,15 @@ def minimax(state, depth, player):
     return best
 
 
+"""
+   Clears the console
+   """
+def clean():
+    os_name = platform.system().lower()
+    if 'windows' in os_name:
+        system('cls')
+    else:
+        system('clear')
 
 
 "main  function"
