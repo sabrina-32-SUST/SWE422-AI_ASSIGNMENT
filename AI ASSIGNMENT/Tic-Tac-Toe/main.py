@@ -116,6 +116,24 @@ def clean():
         system('cls')
     else:
         system('clear')
+ """
+    Print the board on console
+     """
+def render(state, computer_choice, humen_choice):
+
+    chars = {
+        -1: humen_choice,
+        +1: computer_choice,
+        0: ' '
+    }
+    str_line = '---------------'
+
+    print('\n' + str_line)
+    for row in state:
+        for cell in row:
+            symbol = chars[cell]
+            print(f'| {symbol} |', end='')
+        print('\n' + str_line)
 
 
 "main  function"
