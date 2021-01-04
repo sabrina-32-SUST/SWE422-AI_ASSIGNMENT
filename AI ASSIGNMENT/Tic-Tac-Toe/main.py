@@ -21,6 +21,10 @@ def evaluate(state):
     pass
 
 
+def emptyCells(state):
+    pass
+
+
 def minimax(state, depth, player):
     if player == computer:
         best = [-1, -1, -infinity]
@@ -29,6 +33,20 @@ def minimax(state, depth, player):
     if depth == 0 or gameOver(state):
         score = evaluate(state)
         return [-1, -1, score]
+    for cell in emptyCells(state):
+        x, y = cell[0], cell[1]
+        state[x][y] = player
+        score = minimax(state, depth - 1, -player)
+        state[x][y] = 0
+        score[0], score[1] = x, y
+    if player == computer:
+        if score[2] > best[2]:
+            best = score  # maximum value
+        else:
+            if score[2] < best[2]:
+                best = score  # min value
+
+    return best
 
 "main  function"
 def main():
