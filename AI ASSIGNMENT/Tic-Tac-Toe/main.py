@@ -45,9 +45,29 @@ def evaluate(state):
 
     return cells
 
-
+"""
+Each empty cell will be added into cells list
+"""
 def emptyCells(state):
-    pass
+    cells = []
+
+    for x, row in enumerate(state):
+        for y, cell in enumerate(row):
+            if cell == 0:
+                cells.append([x, y])
+
+    return cells
+
+"""
+    A move is valid if the chosen cell is empty
+    
+    """
+def validMove(xCoordinate, yCoordinate):
+
+    if [xCoordinate, yCoordinate] in empty_cells(board):
+        return True
+    else:
+        return False
 
 "minimax fuction  will  choose   the  best  move"
 def minimax(state, depth, player):
