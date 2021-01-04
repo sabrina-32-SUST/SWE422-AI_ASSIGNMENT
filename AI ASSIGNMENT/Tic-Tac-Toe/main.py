@@ -171,6 +171,44 @@ def ai_turn( computer_choice, humen_choice):
     setMove(xCoordinate, yCoordinate, computer)
     time.sleep(1)
 
+ """
+    The Human plays choosing a valid move.
+     
+    """
+def human_turn( computer_choice, humen_choice):
+
+    depth = len(emptyCells(board))
+    if depth == 0 or gameOver(board):
+        return
+
+    # Dictionary of valid moves
+    move = -1
+    moves = {
+        1: [0, 0], 2: [0, 1], 3: [0, 2],
+        4: [1, 0], 5: [1, 1], 6: [1, 2],
+        7: [2, 0], 8: [2, 1], 9: [2, 2],
+    }
+
+    clean()
+    print(f'Human turn [{humen_choice}]')
+    render(board, computer_choice, humen_choice)
+
+    while move < 1 or move > 9:
+        try:
+            move = int(input('Use numpad (1..9): '))
+            coord = moves[move]
+            can_move = setMove(coord[0], coord[1], humen)
+
+            if not can_move:
+                print('Bad move')
+                move = -1
+        except (EOFError, KeyboardInterrupt):
+            print('Bye')
+            exit()
+        except (KeyError, ValueError):
+            print('Bad choice')
+
+
 
 "main  function"
 def main():
