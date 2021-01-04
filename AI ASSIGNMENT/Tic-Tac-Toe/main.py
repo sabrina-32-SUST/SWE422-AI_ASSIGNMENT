@@ -10,7 +10,23 @@ board = [
     [0, 0, 0]
 
 ]
-"minimax fuction  will  choose   the  best  move"
+"check  possibilities  of  wins"
+def wins(state, player):
+
+    win_state = [
+        [state[0][0], state[0][1], state[0][2]],
+        [state[1][0], state[1][1], state[1][2]],
+        [state[2][0], state[2][1], state[2][2]],
+        [state[0][0], state[1][0], state[2][0]],
+        [state[0][1], state[1][1], state[2][1]],
+        [state[0][2], state[1][2], state[2][2]],
+        [state[0][0], state[1][1], state[2][2]],
+        [state[2][0], state[1][1], state[0][2]],
+    ]
+    if [player, player, player] in win_state:
+        return True
+    else:
+        return False
 
 
 def gameOver(state):
@@ -24,7 +40,7 @@ def evaluate(state):
 def emptyCells(state):
     pass
 
-
+"minimax fuction  will  choose   the  best  move"
 def minimax(state, depth, player):
     if player == computer:
         best = [-1, -1, -infinity]
