@@ -1,6 +1,8 @@
 import platform
+import time
 from math import inf as infinity
 from os import system
+from random import choice
 
 humen =  -1
 computer = 1
@@ -134,6 +136,40 @@ def render(state, computer_choice, humen_choice):
             symbol = chars[cell]
             print(f'| {symbol} |', end='')
         print('\n' + str_line)
+
+ """
+    It calls the minimax function if the depth < 9,
+    else it choices a random coordinate.
+    """
+
+
+def xCoordinate(args):
+    pass
+
+
+def yCoordinate(args):
+    pass
+
+
+def ai_turn( computer_choice, humen_choice):
+
+    depth = len(emptyCells(board))
+    if depth == 0 or gameOver(board):
+        return
+
+    clean()
+    print(f'Computer turn [{ computer_choice }]')
+    render(board,  computer_choice, humen_choice)
+
+    if depth == 9:
+        x = choice([0, 1, 2])
+        y = choice([0, 1, 2])
+    else:
+        move = minimax(board, depth, computer)
+        x, y = move[0], move[1]
+
+    setMove(xCoordinate, yCoordinate, computer)
+    time.sleep(1)
 
 
 "main  function"
