@@ -29,12 +29,21 @@ def wins(state, player):
         return False
 
 
+"game over state"
 def gameOver(state):
-    pass
+    return wins(state, humen) or wins(state, computer)
+
 
 
 def evaluate(state):
-    pass
+    cells = []
+
+    for x, row in enumerate(state):
+        for y, cell in enumerate(row):
+            if cell == 0:
+                cells.append([x, y])
+
+    return cells
 
 
 def emptyCells(state):
