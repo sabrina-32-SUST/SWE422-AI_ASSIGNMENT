@@ -64,7 +64,19 @@ def emptyCells(state):
     """
 def validMove(xCoordinate, yCoordinate):
 
-    if [xCoordinate, yCoordinate] in empty_cells(board):
+    if [xCoordinate, yCoordinate] in emptyCells(board):
+        return True
+    else:
+        return False
+
+"""
+   Player  move  if the coordinates are valid
+    
+    """
+def setMove(xCoordinate, yCoordinate, player):
+
+    if validMove(xCoordinate, yCoordinate):
+        board[xCoordinate][yCoordinate] = player
         return True
     else:
         return False
@@ -79,11 +91,11 @@ def minimax(state, depth, player):
         score = evaluate(state)
         return [-1, -1, score]
     for cell in emptyCells(state):
-        x, y = cell[0], cell[1]
-        state[x][y] = player
+        xCoordinate, yCoordinate = cell[0], cell[1]
+        state[xCoordinate][yCoordinate] = player
         score = minimax(state, depth - 1, -player)
-        state[x][y] = 0
-        score[0], score[1] = x, y
+        state[xCoordinate][yCoordinate] = 0
+        score[0], score[1] = xCoordinate, yCoordinate
     if player == computer:
         if score[2] > best[2]:
             best = score  # maximum value
@@ -92,6 +104,9 @@ def minimax(state, depth, player):
                 best = score  # min value
 
     return best
+
+
+
 
 "main  function"
 def main():
